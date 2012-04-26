@@ -1,0 +1,7 @@
+form li {
+	list-style: none;
+}
+
+div.validation_errors p {
+	color: red;
+}
