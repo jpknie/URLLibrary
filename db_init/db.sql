@@ -7,3 +7,12 @@ CREATE TABLE  `urllibrary`.`tbl_user` (
 `reg_code` VARCHAR( 12 ) NOT NULL ,
 `activated` TINYINT NULL DEFAULT  '0'
 ) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `urllibrary`.`tbl_url` ( 
+`url_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+`shorturl_code` VARCHAR(10) NULL, 
+`description` TEXT NULL, 
+`user_id` INT(11) NOT NULL, 
+FOREIGN KEY (user_id) 
+	REFERENCES tbl_user(user_id) ON DELETE CASCADE
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;
