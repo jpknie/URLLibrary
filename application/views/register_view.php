@@ -2,8 +2,8 @@
 <?php
 	echo form_open($base_url . 'user/register');
 	$username = array(
-			'name' => 'reg_username',
-			'id' => 'reg_username',
+			'name' => 'username',
+			'id' => 'username',
 			'value' => ''
 			);
 	$realname = array(

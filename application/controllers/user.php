@@ -16,9 +16,15 @@
 		
 		function register() {
 			$this->view_data['title'] = 'User Registration';
-			$this->form_validation->set_rules('username', 'Username', 		'min_length[6]|trim|required|alpha_numeric');
-		$this->form_validation->set_rules('email', 'Email', 'valid_email|required');
-			$this->form_validation->set_rules('password', 'Password', 'min_length[6]|trim|required');
+			$this->form_validation->set_rules('username', 'Username',
+			 	'xss_clean|min_length[6]|max_length[20]|trim|required|alpha_numeric');
+			$this->form_validation->set_rules('realname', 'Realname',
+				'xss_clean|required');
+			$this->form_validation->set_rules('email', 'Email',
+				'xss_clean|valid_email|required');
+			$this->form_validation->set_rules('password', 'Password', 
+				'xss_clean|min_length[6]|trim|required');
+			$this->form_validation->set_rules('confirm_pass', 'Confirm Password','xss_clean|min_length[6]|trim|required|matches[password]');
 			if($this->form_validation->run() == FALSE) {
 				$this->view_helper->viewPage($this->view_data,'register');	
 			}
