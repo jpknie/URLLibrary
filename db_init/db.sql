@@ -3,9 +3,7 @@ CREATE TABLE  `urllibrary`.`tbl_user` (
 `username` VARCHAR( 32 ) NULL ,
 `realname` VARCHAR( 512 ) NULL ,
 `email` VARCHAR( 512 ) NULL ,
-`password` VARCHAR( 64 ) NULL ,
-`reg_code` VARCHAR( 12 ) NOT NULL ,
-`activated` TINYINT NULL DEFAULT  '0'
+`password` VARCHAR( 64 ) NULL
 ) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE `urllibrary`.`tbl_url` ( 
