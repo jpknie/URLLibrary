@@ -1,3 +1,4 @@
+	<div id="content">
 <h1>User Registration</h1>
 <?php
 	echo form_open($base_url . 'user/register');
@@ -30,34 +31,30 @@
 <ul>
 	<li>
 		<label>User Name: </label>
-		<div><?php echo form_input($username); ?></div>
+		<?php echo form_input($username); ?>
 	</li>
 	<li>
 		<label>Real Name: </label>
-		<div><?php echo form_input($realname); ?></div>
-	<li>
+		<?php echo form_input($realname); ?>
+	</li>
 	<li>
 		<label>Email Address: </label>
-		<div><?php echo form_input($email);?> </div>
+		<?php echo form_input($email);?>
 	</li>
 	<li>
 		<label>Password: </label>
-		<div><?php echo form_password($password);?> </div>
-	</li>
+		<?php echo form_password($password);?>
+		</li>
 	<li>
 		<label>Confirm Password: </label>
-		<div><?php echo form_password($confirm_pass); ?></div>
-	
-
+		<?php echo form_password($confirm_pass); ?>
 	</li>
 	
 </ul>
 
-<div>
-	<?php
-		echo form_submit(array('name' => 'register'), 'Register');
-	?>
-</div>
+<?php
+	echo form_submit(array('name' => 'register'), 'Register');
+?>
 <div class='validation_errors'>
 	<?php echo validation_errors(); ?>
 </div>
@@ -68,3 +65,4 @@
 <?php
 	echo form_close();
 ?>
+</div>

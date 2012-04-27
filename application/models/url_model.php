@@ -9,7 +9,9 @@
 			parent::__construct();
 		}
 		
-		function saveUrl() {
+		function saveUrl($url, $description) {
+			$shortUrlCode = $this->str_helper->random_string(10);
+			
 		}
 	
 	}

@@ -1,7 +1,7 @@
 <?php 
 	
 	if (! defined('BASEPATH')) exit('No direct script access');
-	
+		
 	class User extends CI_Controller {
 	
 		//php 5 constructor
@@ -9,12 +9,47 @@
 			parent::__construct();
 			$this->view_data['base_url'] = base_url();
 			$this->load->model('User_Model');
+			$this->load->library('session');
 		}
 		
 		function index() {
-			$this->register();
+			$logged = $this->session->userdata('logged');
+			/** Show user data if user is logged in */
+			if($logged)	$this->userData();
+			else $this->login();
 		}
-		
+	
+		function login() {
+			$this->view_data['title'] = 'Login page';
+			$this->form_validation->set_rules('username', 'Username', 
+									'xss_clean|min_length[6]|max_length[20]|trim|required|alpha_numeric');
+			$this->form_validation->set_rules('password', 'Password', 
+									'xss_clean|min_length[6]|trim|required');
+			if($this->form_validation->run() == FALSE) {
+				$this->view_helper->viewPage($this->view_data, 'login');
+			}
+
+			else {
+				$username = $this->input->post('username');
+				$password = $this->input->post('password');
+
+				$user = $this->User_Model->validLogin($username, $password);
+				if($user) {
+					$this->session->set_userdata('userid', $user);
+					$this->session->set_userdata('logged', TRUE);
+					$this->userData();
+				}
+				else {
+					$this->loginError();	
+				}
+			}
+		}
+
+		function loginError() {
+			$this->view_data['title'] = 'Login Error';
+			$this->view_helper->viewPage($this->view_data, 'loginerror');
+		}
+	
 		function register() {
 			$this->view_data['title'] = 'User Registration';
 			$this->form_validation->set_rules('username', 'Username',
@@ -27,7 +62,7 @@
 				'xss_clean|min_length[6]|trim|required');
 			$this->form_validation->set_rules('confirm_pass', 'Confirm Password','xss_clean|min_length[6]|trim|required|matches[password]');
 			if($this->form_validation->run() == FALSE) {
-				$this->view_helper->viewPage($this->view_data,'register');	
+				$this->view_helper->viewPage($this->view_data,'register');
 			}
 			else {
 				$username = $this->input->post('username');
@@ -40,7 +75,12 @@
 		
 		/** Returns view with user data and links the user has shared */
 		function userData() {
-			
+			$this->view_data['title'] = 'User page';
+			$loggeduser = $this->session->userdata('userid');
+			$userdata = $this->User_Model->getUserData($loggeduser);
+			if(!$userdata) die("No results for this user!");
+			$this->view_data['userdata'] = $userdata;
+			$this->view_helper->viewPage($this->view_data, 'user');
 		}
 	
 	}

@@ -7,4 +7,5 @@
 		<hr>
 		<h1>Your Shared links</h1>
 		<!-- loop through all the users in db and loop their links and show theme here -->
+		<?=anchor($base_url . 'url/createlink', 'Share new link..');?>
 	</div>
