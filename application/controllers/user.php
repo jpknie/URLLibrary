@@ -8,6 +8,7 @@
 		function __construct() {
 			parent::__construct();
 			$this->view_data['base_url'] = base_url();
+			$this->load->model('User_Model');
 		}
 		
 		function index() {
@@ -29,7 +30,11 @@
 				$this->view_helper->viewPage($this->view_data,'register');	
 			}
 			else {
-				
+				$username = $this->input->post('username');
+				$realname = $this->input->post('realname');
+				$password = $this->input->post('password');
+				$email = $this->input->post('email');
+				$this->User_Model->saveUser($username, $realname, $email, $password);
 			}
 		}
 		
