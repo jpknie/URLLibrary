@@ -4,17 +4,17 @@
 	$username = array(
 			'name' => 'username',
 			'id' => 'username',
-			'value' => ''
+			'value' => set_value('username')
 			);
 	$realname = array(
 			'name' => 'realname',
 			'id' => 'realname',
-			'value' => ''
+			'value' => set_value('realname')
 	);
 	$email = array(
 			'name' => 'email',
 			'id' => 'email',
-			'value' => ''
+			'value' => set_value('email')
 	);
 	$password = array(
 			'name' => 'password',
