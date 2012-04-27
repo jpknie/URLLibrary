@@ -13,5 +13,4 @@ function random_string($max_length) {
 
 	return $result_string;
 }
-
 ?>
