@@ -49,6 +49,12 @@
 			$this->view_data['title'] = 'Login Error';
 			$this->view_helper->viewPage($this->view_data, 'loginerror');
 		}
+
+		function logout() {
+			$this->session->unset_userdata('user_id'); 
+			$this->session->sess_destroy();
+			redirect(base_url());
+		}
 	
 		function register() {
 			$this->view_data['title'] = 'User Registration';

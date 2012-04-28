@@ -6,7 +6,7 @@
 				 . anchor($base_url . 'user/register', 'Register') . " as a new user. </p>";
 			}
 			else { 
-				echo "You are logged in";
+				echo "You are logged in. " . anchor($base_url . 'user/logout', 'Logout');
 			}
 		?>
 		<hr>

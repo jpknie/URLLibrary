@@ -1,4 +1,5 @@
 	<div id="content">
+		<?=anchor($base_url, 'Home');?>
 		<h1>User page</h1>
 		<h2>Account information</h2>
 		<p>Username: <?=$userdata['username']?></p>

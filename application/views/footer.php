@@ -1,6 +1,6 @@
 		<div id="footer">
 		<hr>
-			<p>author: J.Nieminen 2012</p>
+			<p>author: jpknie@utu.fi </p>
 		</div>
 	</body>
 </html>
