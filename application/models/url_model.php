@@ -19,6 +19,20 @@
 			if(!$this->db->_error_message()) return $short_url_code;
 			else return FALSE;
 		}
+	
+		function getUrlsForUser($userid) {
+			$get_urls = "SELECT * FROM tbl_url WHERE user_id = ?";
+			$results = $this->db->query($get_urls, $userid);
+			if($results->num_rows() == 0) return FALSE;
+			return $results;
+		}
+
+		function decodeUrl($shortcode) {
+			$get_url = "SELECT url FROM tbl_url WHERE shorturl_code = ?";
+			$results = $this->db->query($get_url, $shortcode);
+			if($results->num_rows() == 0) return FALSE;
+			return $results->row(0)->url; 
+		}
 	}
 
 ?>

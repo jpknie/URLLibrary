@@ -21,6 +21,12 @@
 			$results = $this->db->query($get_user_data, $userid);
 			return $results->row_array();			
 		}
+
+		function getUsers() {
+			$get_users = "SELECT user_id, username FROM tbl_user";
+			$results = $this->db->query($get_users);
+			return $results;
+		}
 	
 		function validLogin($username, $password) {
 			$this->load->helper('security');
