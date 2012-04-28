@@ -8,6 +8,7 @@ CREATE TABLE  `urllibrary`.`tbl_user` (
 
 CREATE TABLE `urllibrary`.`tbl_url` ( 
 `url_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+`url` VARCHAR(2048) NOT NULL,
 `shorturl_code` VARCHAR(10) NULL, 
 `description` TEXT NULL, 
 `user_id` INT(11) NOT NULL, 

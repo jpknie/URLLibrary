@@ -23,12 +23,21 @@
 			$this->form_validation->set_rules('description', 'Description', 
 									'xss_clean|min_length[6]|trim|required');
 			$urlref = $this->input->post('url');
+			$description = $this->input->post('description');
 			
 			if($this->form_validation->run() == FALSE) {
 				$this->view_helper->viewPage($this->view_data, 'createurl');
 			}
 			else {
 				/** Save URL to DB and display success page etc */
+				if($shorturlcode = $this->Url_Model->saveUrl($urlref, $description)) {
+					$this->view_data['title'] = 'URL saved successfully';
+					$this->view_data['shorturlcode'] = $shorturlcode;
+					$this->view_data['urlref'] = $urlref;
+					$this->view_data['description'] = $description;
+					$this->view_helper->viewPage($this->view_data, 'urlsaved_success');
+				}
+				else die("Could not save url!");
 			}
 		}
 
