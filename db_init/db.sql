@@ -1,3 +1,4 @@
+CREATE DATABASE urllibrary;
 CREATE TABLE  `urllibrary`.`tbl_user` (
 `user_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `username` VARCHAR( 32 ) NULL ,
