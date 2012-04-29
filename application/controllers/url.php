@@ -41,6 +41,21 @@
 			}
 		}
 
+		function editLink() {
+			
+			$shorturl = $this->uri-segment(3);
+			$urldata = $this->Url_Model->getUrlData($shorturl);
+			$this->view_data['title'] = 'Edit URL';
+			$this->view_data['urldata'] = $urldata;
+
+		}
+
+		function deleteLink() {
+			$shorturl = $this->uri->segment(3);
+			$this->view_data['title'] = 'You have deleted the URL';
+			$this->Url_Model->deleteUrl($shorturl);
+		}
+
 		function valid_url($url) {
 			if(filter_var($url, FILTER_VALIDATE_URL)) {
 				return TRUE;

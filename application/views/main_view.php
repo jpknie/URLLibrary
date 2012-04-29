@@ -10,7 +10,6 @@
 			}
 		?>
 		<hr>
-		<!-- loop through all the users in db and loop their links and show theme here -->
 		<?php
 			foreach($links as $user => $u) {
 				echo("<h2>Shared by $user</h2>");

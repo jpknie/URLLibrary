@@ -9,6 +9,7 @@
 			parent::__construct();
 			$this->view_data['base_url'] = base_url();
 			$this->load->model('User_Model');
+			$this->load->model('Url_Model');
 			$this->load->library('session');
 		}
 		
@@ -86,6 +87,15 @@
 			$loggeduser = $this->session->userdata('userid');
 			$userdata = $this->User_Model->getUserData($loggeduser);
 			if(!$userdata) die("No results for this user!");
+			
+			$urls = $this->Url_Model->getUrlsForUser($loggeduser);
+
+			/** Get the URLs from database and give them to main view */
+			$links_by_user = array();
+			foreach($urls->result() as $url) {
+				array_push($links_by_user, $url);
+			}
+			$this->view_data['links'] = $links_by_user;
 			$this->view_data['userdata'] = $userdata;
 			$this->view_helper->viewPage($this->view_data, 'user');
 		}

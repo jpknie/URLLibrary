@@ -19,6 +19,13 @@
 			if(!$this->db->_error_message()) return $short_url_code;
 			else return FALSE;
 		}
+
+		function deleteUrl($shortcode) {
+			$delete_statement = "DELETE FROM tbl_url WHERE shorturl_code = ?";
+			$this->db->query($delete_statement, $shortcode);
+			if(!$this->db->_error_message()) return TRUE;
+			else return FALSE;
+		}
 	
 		function getUrlsForUser($userid) {
 			$get_urls = "SELECT * FROM tbl_url WHERE user_id = ?";
@@ -32,6 +39,13 @@
 			$results = $this->db->query($get_url, $shortcode);
 			if($results->num_rows() == 0) return FALSE;
 			return $results->row(0)->url; 
+		}
+
+		function getUrlData($shortcode) {
+			$get_url = "SELECT url FROM tbl_url WHERE shorturl_code = ?";
+			$results = $this->db->query($get_url, $shortcode);
+			if($results->num_rows() == 0) return FALSE;
+			return $results->row(0); 
 		}
 	}
 
