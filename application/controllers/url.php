@@ -84,6 +84,7 @@
 			$shorturl = $this->uri->segment(3);
 			$this->view_data['title'] = 'You have deleted the URL';
 			$this->Url_Model->deleteUrl($shorturl);
+			redirect(base_url() . 'user/');
 		}
 
 		function valid_url($url) {

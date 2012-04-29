@@ -89,11 +89,13 @@
 			if(!$userdata) die("No results for this user!");
 			
 			$urls = $this->Url_Model->getUrlsForUser($loggeduser);
-
+			
 			/** Get the URLs from database and give them to main view */
 			$links_by_user = array();
-			foreach($urls->result() as $url) {
-				array_push($links_by_user, $url);
+			if($urls != FALSE) {
+				foreach($urls->result() as $url) {
+					array_push($links_by_user, $url);
+				}
 			}
 			$this->view_data['links'] = $links_by_user;
 			$this->view_data['userdata'] = $userdata;
