@@ -7,6 +7,8 @@
 			}
 			else { 
 				echo "You are logged in. " . anchor($base_url . 'user/logout', 'Logout');
+				echo "</br>";
+				echo "Go to " . anchor($base_url . 'user/', 'profile');
 			}
 		?>
 		<hr>

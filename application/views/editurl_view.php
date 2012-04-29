@@ -1,17 +1,24 @@
 	<div id="content">
 		<h1>Edit your link</h1>
 	<?php
-		echo form_open($base_url . 'url/editLink');
-		$urlref = array(
+			$shortcode = array(
+				'name' => 'shortcode',
+				'value' => set_value('shortcode', $shortcode)
+			);
+
+			$urlref = array(
 			'name' => 'url',
 			'id' => 'url',
-			'value' => set_value('url')
+			'value' => set_value('url', $url)
 			);
 		$description = array(
 			'name' => 'description',
 			'id' => 'description',
-			'value' => ''
+			'value' => set_value('description', $description)
 			);
+		
+			echo form_open($base_url . 'url/updateLink', '', $shortcode);
+
 		?>
 	<ul>
 		<li>

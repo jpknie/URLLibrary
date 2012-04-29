@@ -20,6 +20,13 @@
 			else return FALSE;
 		}
 
+		function updateUrl($shortcode, $url, $description) {
+			$update_statement = "UPDATE tbl_url SET url=?, description=? WHERE shorturl_code=?";
+			$this->db->query($update_statement, array($url, $description, $shortcode));
+			if(!$this->db->_error_message()) return TRUE;
+			else return FALSE;
+		}
+
 		function deleteUrl($shortcode) {
 			$delete_statement = "DELETE FROM tbl_url WHERE shorturl_code = ?";
 			$this->db->query($delete_statement, $shortcode);
@@ -42,7 +49,7 @@
 		}
 
 		function getUrlData($shortcode) {
-			$get_url = "SELECT url FROM tbl_url WHERE shorturl_code = ?";
+			$get_url = "SELECT * FROM tbl_url WHERE shorturl_code = ?";
 			$results = $this->db->query($get_url, $shortcode);
 			if($results->num_rows() == 0) return FALSE;
 			return $results->row(0); 

@@ -12,7 +12,10 @@
 			foreach($links as $url) {
 				echo "<li>";
 				echo anchor($base_url . 'shorturl/decode_url/' . $url->shorturl_code, $url->description);
-				echo "     ";
+				
+				echo " ";
+				echo anchor($base_url . 'url/editLink/' . $url->shorturl_code, 'Edit');
+				echo " ";
 				echo anchor($base_url . 'url/deleteLink/' . $url->shorturl_code, 'Delete');
 				echo "</li>";
 			}
